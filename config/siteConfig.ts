@@ -30,7 +30,7 @@ export interface BioLink {
   export const siteConfig: SiteConfig = {
   name: 'Inky Ganbold',
   bio: {
-  text: 'Won 10 of 25 hackathons, hosted 3 including [DAHacks], contributed open-source hardware on [Github], [Open Source Hardware Lab], and [Medium], CS student at De Anza.',
+  text: 'Won 10/25 hackathons, hosted 3 (incl. [DAHacks]), actively open source contributor on [Github], [OSHWLab], and [Medium], CS student at De Anza. ',
   links: [
   {
   text: 'Medium',
@@ -38,7 +38,7 @@ export interface BioLink {
   external: true
   },
   {
-  text: 'Open Source Hardware Lab',
+  text: 'OSHWLab',
   url: 'https://oshwlab.com/enkhbold470',
   external: true
   },
