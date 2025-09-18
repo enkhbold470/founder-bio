@@ -4,27 +4,23 @@
 
 body {
   font-size: 16pt;
-  color: #000000;
-  background-color: #F8F8FF;
+
 }
 
 .name {
   font-size: 36pt;
-  font-weight: 800;
   text-align: left;
 }
 
 
 .title {
   font-size: 20pt;
-  font-weight: 700;
   text-align: left;
   margin-bottom: 0.5rem;
 }
 
 footer {
   font-size: 12pt;
-  font-weight: 400;
   gap: 10px;
   display: flex;
   flex-direction: row;
@@ -33,7 +29,6 @@ footer {
 
 p {
   font-size: 12pt;
-  font-weight: 400;
   font-style: italic;
   text-align: left;
   line-height: 1.7;
