@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="min-h-screen overflow-hidden flex flex-col justify-center items-center p-4 sm:p-6 md:p-8">
+    <div className="min-h-screen overflow-hidden flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 ">
       <main className="flex flex-col items-center justify-center max-w-[400px]">
         {/* Intro Section */}
         <header className="text-center mb-4 sm:mb-6">
@@ -66,19 +66,18 @@ export default function Home() {
         <section className="text-center w-full mb-4 sm:mb-6">
           <h2 className="title">Updates</h2>
 
-          <ul className="list-disc">
+          <ul>
             {recentUpdates.map((update) => (
-              <li key={update.date} className="text-left p-2 sm:p-3">
-                <p className="text-left p-2 sm:p-3">
-                  <span className="font-bold">{update.date}</span> {": "}
-                  <Link
-                    href={update.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {update.title}
-                    </Link>
-                </p>
+              <li key={update.date} className="text-left">
+                <span className="font-bold">{update.date}</span>{": "}
+                <Link
+                  href={update.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-600 transition-colors"
+                >
+                  {update.title}
+                </Link>
               </li>
             ))}
           </ul>

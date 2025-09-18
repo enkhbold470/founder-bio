@@ -33,8 +33,8 @@ footer {
 
 @media (max-width: 480px) {
   footer {
-    flex-direction: column;
-    gap: 5px;
+    flex-direction: row;
+    gap: 10px;
     align-items: flex-start;
   }
 }
@@ -62,4 +62,20 @@ a:hover {
 span {
   background-color: #00ffff;
 }
+
+ul {
+  font-size: clamp(10pt, 3.5vw, 12pt);
+  font-style: italic;
+  text-align: left;
+  line-height: 1.5;
+  word-wrap: break-word;
+  hyphens: auto;
+  list-style-type:disc;
+  list-style-position: inside;
+  margin-left: 1rem;
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
+  list-style-type:disc;
+}
+
 
