@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Noto_Serif_Georgian } from 'next/font/google';
+import { Noto_Serif} from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { siteConfig } from '@/config/siteConfig';
 import "./globals.css";
 
-const notoSerifGeorgian = Noto_Serif_Georgian({
-  weight:  ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+const selectedFont = Noto_Serif({
+  weight:  [ '100', '200', '300', '400', '500', '600', '700'],
   subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} | ${siteConfig.bio}`,
-  description: `Portfolio of ${siteConfig.name}, a founder building innovative solutions`,
+  title: `${siteConfig.name}`,
+  description: `Portfolio of ${siteConfig.name}`,
   icons: {
     icon: '/favicon.ico',
   },
@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` ${notoSerifGeorgian.className}`}>
+      <body className={`${selectedFont.className}`}>
         {children}
         <Analytics />
         {/* Add Google Analytics or other analytics here later */}

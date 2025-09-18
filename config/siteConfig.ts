@@ -30,19 +30,31 @@ export interface BioLink {
   export const siteConfig: SiteConfig = {
   name: 'Inky Ganbold',
   bio: {
-  text: 'Engineer with a passion for robotics, IoT, and AI, specializing in full-stack web development. I founded the Mongolian Robotics Club and led the Mongolian team to the F.I.R.S.T. Global Robotics Tournament, ranking 32nd among 190 countries. I also organize and participate in hackathons, and share my projects and ideas on platforms like Medium and EasyEDA.',
+  text: 'Won 10 of 25 hackathons, hosted 3 including [DAHacks], contributed open-source hardware on [Github], [Open Source Hardware Lab], and [Medium], CS student at De Anza.',
   links: [
   {
   text: 'Medium',
-  url: 'https://medium.com/@enkhe.enkhebold',
+  url: 'https://enkhy.medium.com/',
   external: true
   },
   {
-  text: 'EasyEDA',
-  url: 'https://easyeda.com/',
+  text: 'Open Source Hardware Lab',
+  url: 'https://oshwlab.com/enkhbold470',
   external: true
+  },
+  {
+    text: 'DAHacks',
+    url: 'https://da.hackathon.org/',
+    external: true
+  },
+  {
+    text: 'Github',
+    url: 'https://github.com/enkhbold470',
+    external: true
   }
+
   ]
+
   },
   contact: {
   email: 'inky@enk.icu',
@@ -51,6 +63,13 @@ export interface BioLink {
   github: 'https://github.com/enkhbold470'
   },
   contactDisplay: [
+    {
+      label: 'Twitter',
+      value: 'Twitter',
+      url: 'https://x.com/1nkfy',
+      type: 'social',
+      external: true
+      },
   {
   label: 'LinkedIn',
   value: 'LinkedIn',
@@ -58,13 +77,7 @@ export interface BioLink {
   type: 'social',
   external: true
   },
-  {
-  label: 'X',
-  value: 'X',
-  url: 'https://x.com/1nkfy',
-  type: 'social',
-  external: true
-  },
+  
   {
   label: 'GitHub',
   value: 'Github',
@@ -87,6 +100,6 @@ export interface BioLink {
   {
   date: 'November 3, 2023',
   title: 'Electricity calculator design shocks De Anza Hackathon',
-  url: 'https://enk.icu/blog'
+  url: 'https://lavozdeanza.com/features/2023/11/03/electricity-calculator-design-shocks-de-anza-hackathon/'
   }
   ]
