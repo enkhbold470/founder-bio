@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig, recentUpdates } from "@/config/siteConfig";
 import { renderBioWithLinks } from "@/utils/renderBio";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -43,20 +44,20 @@ export default function Home() {
         {/* Contact Section */}
         <section className="text-center mb-4 sm:mb-6 w-full">
           <h2 className="title">Contact</h2>
-          <div className="flex justify-between">
+           <div className="flex justify-between px-4">
             {siteConfig.contactDisplay.map((contactItem, index) => (
               <p
                 key={`${contactItem.type}-${index}`}
                 className="text-left p-2 sm:p-3"
               >
-                <a
+                <Link
                   href={contactItem.url}
                   aria-label={`${siteConfig.name} ${contactItem.label}`}
                   target={contactItem.external ? "_blank" : undefined}
                   rel={contactItem.external ? "noopener noreferrer" : undefined}
                 >
                   {contactItem.value}
-                </a>
+                </Link>
               </p>
             ))}
           </div>
@@ -65,18 +66,18 @@ export default function Home() {
         <section className="text-center w-full mb-4 sm:mb-6">
           <h2 className="title">Updates</h2>
 
-          <ul>
+          <ul className="list-disc">
             {recentUpdates.map((update) => (
-              <li key={update.date}>
-                <p>
-                  <span>{update.date}</span> {": "}
-                  <a
+              <li key={update.date} className="text-left p-2 sm:p-3">
+                <p className="text-left p-2 sm:p-3">
+                  <span className="font-bold">{update.date}</span> {": "}
+                  <Link
                     href={update.url}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     {update.title}
-                  </a>
+                    </Link>
                 </p>
               </li>
             ))}
@@ -89,23 +90,23 @@ export default function Home() {
         <p className="text-left ">© 2025 {siteConfig.name}</p>
 
         <p className="text-left">
-          <a
+          <Link
             href="https://bio.enk.icu/blog"
             target="_blank"
             rel="noopener noreferrer"
           >
             Blog
-          </a>
+          </Link>
         </p>
 
         <p className="text-left">
-          <a
+          <Link
             href="https://bio.enk.icu"
             target="_blank"
             rel="noopener noreferrer"
           >
             Previous Web
-          </a>
+          </Link>
         </p>
       </footer>
     </div>
