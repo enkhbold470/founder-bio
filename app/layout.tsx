@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Serif} from 'next/font/google';
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/next';
 import { siteConfig } from '@/config/siteConfig';
 import "./globals.css";
 
