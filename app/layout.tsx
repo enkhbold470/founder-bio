@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Serif } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from '@vercel/analytics/next';
 import { siteConfig } from "@/config/siteConfig";
 import { StructuredData } from "@/components/StructuredData";
 import "./globals.css";
@@ -71,6 +71,25 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" />
         <meta name="color-scheme" content="light" />
         <link rel="canonical" href={siteConfig.url} />
+       {/* <script async src="htmx.js"></script>
+ <script async src="https://unpkg.com/amazon@1.0.0"></script>
+<script async src="https://unpkg.com/bootstrap@5.3.0"></script>
+<script async src="https://unpkg.com/drupal@1.0.0"></script>
+<script async src="https://unpkg.com/framer@1.0.0"></script>
+<script async src="https://unpkg.com/googlecloud@1.0.0"></script>
+<script async src="https://unpkg.com/gsap@3.12.5"></script>
+<script async src="https://unpkg.com/htmx.org@2.0.4"></script>
+<script async src="https://unpkg.com/jquery@3.7.1"></script>
+<script async src="https://unpkg.com/paypal@1.0.0"></script>
+<script async src="https://unpkg.com/shopify@1.0.0"></script>
+<script async src="https://unpkg.com/stripe@1.0.0"></script>
+<script async src="https://unpkg.com/svelte@4.2.7"></script>
+<script async src="https://unpkg.com/vue-router@4"></script>
+<script async src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script async src="https://unpkg.com/wix@1.0.0"></script>
+<script async src="https://unpkg.com/woocommerce@1.0.0"></script>
+<script async src="https://unpkg.com/wordpress-js@1.0.0"></script> */}
+
       </head>
       <body className={`${selectedFont.className} antialiased`}>
         <StructuredData type="ProfilePage" />
