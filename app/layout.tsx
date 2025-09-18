@@ -28,6 +28,8 @@ export default function RootLayout({
         {children}
         <Analytics />
         {/* Add Google Analytics or other analytics here later */}
+                {/* Add Google Analytics or other analytics here later */}
+
       </body>
     </html>
   );
