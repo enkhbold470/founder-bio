@@ -3,35 +3,47 @@
 @tailwind utilities;
 
 body {
-  font-size: 16pt;
-
+  font-size: clamp(14pt, 4vw, 16pt);
+  overflow-x: hidden;
 }
 
 .name {
-  font-size: 36pt;
+  font-size: clamp(28pt, 8vw, 36pt);
   text-align: left;
+  line-height: 1.2;
 }
 
-
 .title {
-  font-size: 20pt;
+  font-size: clamp(18pt, 5vw, 20pt);
   text-align: left;
   margin-bottom: 0.5rem;
+  line-height: 1.3;
 }
 
 footer {
-  font-size: 12pt;
-  gap: 10px;
+  font-size: clamp(10pt, 3vw, 12pt);
+  gap: clamp(8px, 2vw, 10px);
   display: flex;
   flex-direction: row;
   margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  footer {
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+  }
 }
 
 p {
-  font-size: 12pt;
+  font-size: clamp(10pt, 3.5vw, 12pt);
   font-style: italic;
   text-align: left;
   line-height: 1.7;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 /* Remove all link styling and hover effects to maintain minimalist design */
