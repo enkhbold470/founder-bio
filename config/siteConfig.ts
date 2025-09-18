@@ -30,7 +30,7 @@ export interface BioLink {
   export const siteConfig: SiteConfig = {
   name: 'Inky Ganbold',
   bio: {
-  text: 'Won 10/25 hackathons, hosted 3 (incl. [DAHacks]), actively open source contributor on [Github], [OSHWLab], and [Medium], CS student at De Anza. ',
+    text: 'Won 10/25 hackathons (YC Agent Hack, Stanford Treehacks, HackMIT, MIT Energy Hacks, Harvard Hack etc.), hosted 3 (incl. [DAHacks]), actively open source contributor on [Github], [OSHWLab], and [Medium], CS student at De Anza. ',
   links: [
   {
   text: 'Medium',

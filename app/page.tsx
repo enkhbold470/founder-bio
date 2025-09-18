@@ -59,13 +59,13 @@ export default function Home() {
 
         <p className="flex align-top">
 
-           <a href="https://enk.icu/blog" target="_blank" rel="noopener noreferrer">Blog</a>
+           <a href="https://bio.enk.icu/blog" target="_blank" rel="noopener noreferrer">Blog</a>
 
         </p>
         
         
         <p className="flex align-top">
-          <a href="https://enk.icu" target="_blank" rel="noopener noreferrer">Previous Web</a>
+          <a href="https://bio.enk.icu" target="_blank" rel="noopener noreferrer">Previous Web</a>
         </p>
 
       </footer>
