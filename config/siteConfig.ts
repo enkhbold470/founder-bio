@@ -85,26 +85,11 @@ export const siteConfig: SiteConfig = {
       external: true
     },
     {
-      label: 'LinkedIn',
-      value: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/enkhbold470/',
-      type: 'social',
-      external: true
-    },
-
-    {
       label: 'GitHub',
       value: 'Github',
       url: 'https://github.com/enkhbold470',
       type: 'social',
       external: true
-    },
-    {
-      label: 'Email',
-      value: 'inky@enk.icu',
-      url: 'mailto:inky@enk.icu',
-      type: 'email',
-      external: false
     }
   ]
 }
