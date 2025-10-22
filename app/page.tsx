@@ -63,6 +63,7 @@ export default function Home() {
           </div>
         </section>
 
+
         <section className="text-center w-full mb-4 sm:mb-6">
           <h2 className="title">Updates</h2>
 

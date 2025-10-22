@@ -37,14 +37,14 @@ contactDisplay: ContactItem[];
 export const siteConfig: SiteConfig = {
   name: 'Inky Ganbold',
   title: 'Inky Ganbold - Hackathon Winner & Open Source Contributor',
-  description: 'Portfolio of Inky Ganbold, a CS student at De Anza who has won 10/25 hackathons including YC Agent Hack, Stanford TreeHacks, HackMIT, and MIT Energy Hacks. Active open source contributor and hackathon organizer.',
+  description: 'Portfolio of Inky Ganbold, a CS student at De Anza who has won 11 prizes across 26 hackathons including YC Agent Hack, Stanford TreeHacks, HackMIT, and MIT Energy Hack. Active open-source contributor and hackathon organizer.',
   author: 'Inky Ganbold',
   keywords: ['Inky Ganbold', 'hackathon winner', 'computer science', 'open source', 'Stanford TreeHacks', 'HackMIT', 'YC Agent Hack', 'De Anza College', 'software developer', 'hackathon organizer'],
   url: 'https://enk.icu',
   locale: 'en_US',
   type: 'website',
   bio: {
-    text: 'Won 10/25 hackathons (YC Agent Hack, Stanford Treehacks, HackMIT, MIT Energy Hacks, Harvard Hack etc.), hosted 3 (incl. [DAHacks]), actively open source contributor on [Github], [OSHWLab], and [Medium], CS student at De Anza. ',
+    text: '11x hackathon winner across 26 hackathons (incl. YC Agent Hack, Stanford TreeHacks, HackMIT, MIT Energy Hack, Harvard Hack, etc.). Hosted 3 (incl. [DAHacks], [DAHacks 3.0]);  ~4,900 commits on [Github]. 3 open-source circuit designs on [OSHWLab]. GDSC member; invited to [Google I/O] 2024 & 2025. Represented Mongolia at [FIRST Global 2019]. Active on [Medium]. CS student at De Anza.',
     links: [
       {
         text: 'Medium',
@@ -58,12 +58,27 @@ export const siteConfig: SiteConfig = {
       },
       {
         text: 'DAHacks',
-        url: 'https://da.hackathon.org/',
+        url: 'https://deanzahacks.com',
+        external: true
+      },
+      {
+        text: 'DAHacks 3.0',
+        url: 'https://lavozdeanza.com/multimedia/video/2024/10/31/student-hackers-compete-at-da-hacks-3-0-hack-a-thon-for-over-7500-in-prizes/',
         external: true
       },
       {
         text: 'Github',
         url: 'https://github.com/enkhbold470',
+        external: true
+      },
+      {
+        text: 'Google I/O',
+        url: 'https://www.linkedin.com/posts/enkhbold470_googleio-googleio-activity-7330860474412032001-yrzG',
+        external: true
+      },
+      {
+        text: 'FIRST Global 2019',
+        url: 'https://first.global/2019-nations/mongolia-2019/',
         external: true
       }
 
