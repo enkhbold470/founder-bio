@@ -110,7 +110,11 @@ export const siteConfig: SiteConfig = {
 }
 
 export const recentUpdates = [
-
+  {
+    date: 'October 31, 2024',
+    title: 'Student hackers compete at DAHacks 3.0 hack-a-thon for over $7,500 in prizes',
+    url: 'https://lavozdeanza.com/multimedia/video/2024/10/31/student-hackers-compete-at-da-hacks-3-0-hack-a-thon-for-over-7500-in-prizes/'
+  },
   {
     date: 'November 3, 2023',
     title: 'Electricity calculator design shocks De Anza Hackathon',
