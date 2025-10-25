@@ -91,10 +91,10 @@ export default function Home() {
 
         <p className="text-left">
           <Link
-            href="https://bio.enk.icu/blog"
+            href="https://enkhy.medium.com"
             target="_blank"
             rel="noopener noreferrer"
-          >
+            >
             Blog
           </Link>
         </p>
