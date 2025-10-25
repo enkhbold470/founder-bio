@@ -93,9 +93,16 @@ export const siteConfig: SiteConfig = {
   },
   contactDisplay: [
     {
-      label: 'Twitter',
-      value: 'Twitter',
+      label: 'X',
+      value: 'X',
       url: 'https://x.com/1nkfy',
+      type: 'social',
+      external: true
+    },
+    {
+      label: 'LinkedIn',
+      value: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/enkhbold470/',
       type: 'social',
       external: true
     },
