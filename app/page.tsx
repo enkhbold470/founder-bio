@@ -43,7 +43,7 @@ export default function Home() {
 
         {/* Contact Section */}
         <section className="text-center mb-4 sm:mb-6 w-full">
-          <h2 className="title">Contact</h2>
+          <h2 className="title">Lets Connect!</h2>
            <div className="flex justify-between px-4">
             {siteConfig.contactDisplay.map((contactItem, index) => (
               <p
