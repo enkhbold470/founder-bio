@@ -2,13 +2,21 @@ import rssParser from 'rss-parser';
 import Link from 'next/link';
 import Image from 'next/image';
 
-type FeedItem = {
-  title: string;
-  link: string;
-  contentSnippet?: string;
+interface MediumFeedItem {
+  creator?: string;
+  title?: string;
+  link?: string;
   pubDate?: string;
+  'content:encoded'?: string;
+  contentEncoded?: string; // alias for content:encoded
+  'content:encodedSnippet'?: string;
+  contentSnippet?: string;
+  'dc:creator'?: string;
+  categories?: string[];
+  guid?: string;
+  isoDate?: string;
   image?: string;
-};
+}
 
 function extractImageFromContent(content: string): string | undefined {
   const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
@@ -21,7 +29,7 @@ function extractTextFromContent(content: string, maxLength: number = 200): strin
   return text.substring(0, maxLength) + "...";
 }
 
-async function getFeed(): Promise<FeedItem[]> {
+async function getFeed(): Promise<MediumFeedItem[]> {
   const parser = new rssParser({
     customFields: {
       item: [['content:encoded', 'contentEncoded']],
@@ -30,7 +38,7 @@ async function getFeed(): Promise<FeedItem[]> {
   const feedUrl = "https://enkhy.medium.com/feed";
   const feed = await parser.parseURL(feedUrl);
   return (
-    feed.items?.slice(0, 10).map((item: any) => {
+    feed.items?.slice(0, 10).map((item: MediumFeedItem) => {
       const contentEncoded = item.contentEncoded as string || "";
       const image =
         extractImageFromContent(contentEncoded) || "https://placekeanu.com/500/300";
@@ -71,12 +79,12 @@ export default async function Blog() {
 
         <section className="text-center w-full">
           <ul>
-            {feed.map((item) => (
+            {feed.map((item: MediumFeedItem) => (
               <li key={item.link} className="text-left mb-4 flex items-start gap-2">
                 {/* Very small picture */}
                 <Image
                   src={item.image || "https://placekeanu.com/500/300"}
-                  alt={item.title}
+                  alt={item.title || ""}
                   width={200}
                   height={200}
                   className="rounded object-cover flex-shrink-0 mt-1"
@@ -84,14 +92,14 @@ export default async function Blog() {
                 />
                 <div className="flex-1">
                   <Link
-                    href={`/blog/${item.link.split('/').pop()}`}
+                    href={`/blog/${item.link?.split('/').pop()}`}
                     className="hover:text-blue-600 transition-colors font-semibold"
                   >
-                    {item.title}
+                    {item.title || ""}
                   </Link>
-                  <p className="text-left p-2 sm:p-3 mt-1">{item.contentSnippet}</p>
+                  <p className="text-left p-2 sm:p-3 mt-1">{item.contentSnippet || ""}</p>
                   {item.pubDate && (
-                    <p className="text-left p-2 sm:p-3 text-sm opacity-70">{item.pubDate}</p>
+                    <p className="text-left p-2 sm:p-3 text-sm opacity-70">{item.pubDate || ""}</p>
                   )}
                 </div>
               </li>

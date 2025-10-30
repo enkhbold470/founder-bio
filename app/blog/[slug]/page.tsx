@@ -1,7 +1,28 @@
 import rssParser from 'rss-parser';
-import Image from 'next/image';
+
 import Link from 'next/link';
 
+/**
+ * Interface for Medium RSS Items
+ */
+interface MediumFeedItem {
+  creator?: string;
+  title?: string;
+  link?: string;
+  pubDate?: string;
+  'content:encoded'?: string;
+  contentEncoded?: string; // alias for content:encoded
+  'content:encodedSnippet'?: string;
+  contentSnippet?: string;
+  'dc:creator'?: string;
+  categories?: string[];
+  guid?: string;
+  isoDate?: string;
+}
+
+/**
+ * Extracted and enriched FeedItem shape for local use
+ */
 type FeedItem = {
   title: string;
   link: string;
@@ -53,7 +74,8 @@ function extractYouTubeVideoId(url: string): string | null {
       }
     }
     return null;
-  } catch (e) {
+  } catch (e: unknown) {
+    console.error(e);
     return null;
   }
 }
@@ -110,7 +132,7 @@ function replaceYoutubeLinksWithEmbed(htmlContent: string): string {
 }
 
 async function getFeed(): Promise<FeedItem[]> {
-  const parser = new rssParser({
+  const parser: rssParser<unknown, MediumFeedItem> = new rssParser({
     customFields: {
       item: [['content:encoded', 'contentEncoded']],
     },
@@ -118,16 +140,20 @@ async function getFeed(): Promise<FeedItem[]> {
   const feedUrl = "https://enkhy.medium.com/feed";
   const feed = await parser.parseURL(feedUrl);
 
+  // log the feed.items value for inspection (DEV: can comment/remove in production)
+  // console.log(feed.items);
+
   return (
-    feed.items?.map((item: any) => {
-      const contentEncoded = item.contentEncoded as string || "";
+    feed.items?.map((item: MediumFeedItem) => {
+      // Prefer contentEncoded, fallback to content:encoded
+      const contentEncoded = item.contentEncoded as string || item['content:encoded'] || "";
       const image = extractImageFromContent(contentEncoded);
       return {
         title: item.title ?? "",
         link: item.link ?? "#",
         contentEncoded,
-        contentSnippet: item.contentSnippet || extractTextFromContent(contentEncoded, 200),
-        pubDate: item.pubDate ?? "",
+        contentSnippet: item.contentSnippet || item['content:encodedSnippet'] || extractTextFromContent(contentEncoded, 200),
+        pubDate: item.pubDate ?? item.isoDate ?? "",
         image,
       };
     }) || []
