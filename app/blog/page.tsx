@@ -50,10 +50,10 @@ async function getFeed(): Promise<FeedItem[]> {
 export default async function Blog() {
   const feed = await getFeed();
   return (
-    <div className="min-h-screen flex flex-col items-center p-4 sm:p-6 md:p-8">
-      <main className="flex flex-col max-w-[600px] w-full">
+    <div className="min-h-screen overflow-hidden flex flex-col justify-center items-center p-4 sm:p-6 md:p-8">
+      <main className="flex flex-col items-center justify-center max-w-[600px] w-full">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-2 sm:mb-3">
+        <nav aria-label="Breadcrumb" className="mb-2 sm:mb-3 w-full">
           <ol className="flex items-center space-x-2 text-sm">
             <li>
               <Link href="/" className="hover:underline text-blue-800 font-semibold">
@@ -65,30 +65,51 @@ export default async function Blog() {
           </ol>
         </nav>
 
-        <header className="mb-4 sm:mb-6">
+        <header className="text-center mb-4 sm:mb-6 w-full">
           <h1 className="name">Blog</h1>
-          {/* Keeping back to home as well, if needed */}
         </header>
 
-        <section className="w-full">
+        <section className="text-center w-full">
           <ul>
             {feed.map((item) => (
-              <li key={item.link} className="text-left mb-4">
-                <Link
-                  href={`/blog/${item.link.split('/').pop()}`}
-                  className="hover:text-blue-600 transition-colors"
-                >
-                  {item.title}
-                </Link>
-                <p className="mt-1">{item.contentSnippet}</p>
-                {item.pubDate && (
-                  <p className="text-sm opacity-70">{item.pubDate}</p>
-                )}
+              <li key={item.link} className="text-left mb-4 flex items-start gap-2">
+                {/* Very small picture */}
+                <Image
+                  src={item.image || "https://placekeanu.com/500/300"}
+                  alt={item.title}
+                  width={200}
+                  height={200}
+                  className="rounded object-cover flex-shrink-0 mt-1"
+                  unoptimized
+                />
+                <div className="flex-1">
+                  <Link
+                    href={`/blog/${item.link.split('/').pop()}`}
+                    className="hover:text-blue-600 transition-colors font-semibold"
+                  >
+                    {item.title}
+                  </Link>
+                  <p className="text-left p-2 sm:p-3 mt-1">{item.contentSnippet}</p>
+                  {item.pubDate && (
+                    <p className="text-left p-2 sm:p-3 text-sm opacity-70">{item.pubDate}</p>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
         </section>
       </main>
+
+      <footer className="text-center p-4 sm:p-6 border-t-2 border-black mt-8 w-full max-w-[600px]">
+        <p className="text-left">
+          <Link
+            href="/"
+            className="hover:text-blue-600 transition-colors"
+          >
+            ← Back to Home
+          </Link>
+        </p>
+      </footer>
     </div>
   );
 }
