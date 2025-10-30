@@ -81,7 +81,17 @@ export default function Home() {
                 </Link>
               </li>
             ))}
+             <li className="text-left block mt-2 italic">
+            and more on {" "}
+            <Link
+              href="/blog"
+              className="hover:text-blue-600 transition-colors underline font-bold"
+            >
+              my blog
+            </Link>
+          </li>
           </ul>
+         
         </section>
       </main>
 
@@ -89,23 +99,15 @@ export default function Home() {
       <footer className="text-center p-4 sm:p-6 border-t-2 border-black">
         <p className="text-left ">© 2025 {siteConfig.name}</p>
 
-        <p className="text-left">
-          <Link
-            href="https://enkhy.medium.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            >
-            Blog
-          </Link>
-        </p>
+     
 
         <p className="text-left">
           <Link
-            href="https://bio.enk.icu"
+            href="https://chat.enk.icu"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Previous Web
+            Old Web
           </Link>
         </p>
       </footer>
