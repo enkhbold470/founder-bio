@@ -105,21 +105,21 @@ export const siteConfig: SiteConfig = {
       external: true
     },
     {
-      label: 'LinkedIn',
-      value: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/enkhbold470/',
-      type: 'social',
-      external: true
-    },
-    {
       label: 'GitHub',
       value: 'Github',
       url: 'https://github.com/enkhbold470',
       type: 'social',
       external: true
+    },
+    {
+      label: 'LinkedIn',
+      value: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/enkhbold470/',
+      type: 'social',
+      external: true
     }
   ]
-}
+};
 
 export const recentUpdates = [
   {
