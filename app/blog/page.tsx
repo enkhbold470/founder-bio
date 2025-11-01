@@ -19,6 +19,8 @@ interface MediumFeedItem {
   image?: string;
 }
 export const dynamic = 'force-dynamic';
+export const revalidate = 60; // Revalidate every 60 seconds
+
 function extractImageFromContent(content: string): string | undefined {
   const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
   return imgMatch ? imgMatch[1] : undefined;
@@ -37,7 +39,11 @@ async function getFeed(): Promise<MediumFeedItem[]> {
     },
   });
   const feedUrl = "https://enkhy.medium.com/feed";
-  const feed = await parser.parseURL(feedUrl);
+  
+  // Fetch with no-store cache to ensure fresh data
+  const response = await fetch(feedUrl, { cache: 'no-store' });
+  const xml = await response.text();
+  const feed = await parser.parseString(xml);
   return (
     feed.items?.slice(0, 10).map((item: MediumFeedItem) => {
       const contentEncoded = item.contentEncoded as string || "";
@@ -83,14 +89,19 @@ export default async function Blog() {
             {feed.map((item: MediumFeedItem) => (
               <li key={item.link} className="text-left mb-4 flex items-start gap-2">
                 {/* Very small picture */}
-                <Image
-                  src={item.image || "https://placekeanu.com/500/300"}
-                  alt={item.title || ""}
-                  width={200}
-                  height={200}
-                  className="rounded object-cover flex-shrink-0 mt-1"
-                  unoptimized
-                />
+                <Link
+                    href={`/blog/${item.link?.split('/').pop()}`}
+                    className="hover:text-blue-600 transition-colors font-semibold"
+                  >
+                  <Image
+                    src={item.image || "https://placekeanu.com/500/300"}
+                    alt={item.title || ""}
+                    width={200}
+                    height={200}
+                    className="rounded object-cover flex-shrink-0 mt-1"
+                    unoptimized
+                  />
+                </Link>
                 <div className="flex-1">
                   <Link
                     href={`/blog/${item.link?.split('/').pop()}`}

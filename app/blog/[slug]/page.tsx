@@ -2,6 +2,9 @@ import rssParser from 'rss-parser';
 
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 60; // Revalidate every 60 seconds
+
 /**
  * Interface for Medium RSS Items
  */
@@ -138,7 +141,11 @@ async function getFeed(): Promise<FeedItem[]> {
     },
   });
   const feedUrl = "https://enkhy.medium.com/feed";
-  const feed = await parser.parseURL(feedUrl);
+  
+  // Fetch with no-store cache to ensure fresh data
+  const response = await fetch(feedUrl, { cache: 'no-store' });
+  const xml = await response.text();
+  const feed = await parser.parseString(xml);
 
   // log the feed.items value for inspection (DEV: can comment/remove in production)
   // console.log(feed.items);
