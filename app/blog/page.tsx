@@ -2,6 +2,7 @@ import rssParser from 'rss-parser';
 import Link from 'next/link';
 import Image from 'next/image';
 
+
 interface MediumFeedItem {
   creator?: string;
   title?: string;
@@ -17,7 +18,7 @@ interface MediumFeedItem {
   isoDate?: string;
   image?: string;
 }
-
+export const dynamic = 'force-dynamic';
 function extractImageFromContent(content: string): string | undefined {
   const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
   return imgMatch ? imgMatch[1] : undefined;
