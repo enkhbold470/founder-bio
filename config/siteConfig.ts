@@ -44,10 +44,10 @@ export const siteConfig: SiteConfig = {
   locale: 'en_US',
   type: 'website',
   bio: {
-    text: '11x hackathon winner across 26 hackathons (incl. YC Agent Hack, Stanford TreeHacks, HackMIT, MIT Energy Hack, Harvard Hack, etc.). Hosted 3 (incl. [DAHacks], [DAHacks 3.0]);  ~4,900 commits on [Github]. 3 open-source circuit designs on [OSHWLab]. GDSC member; invited to [Google I/O] 2024 & 2025. Represented Mongolia at [FIRST Global 2019]. Active on [Medium]. CS student at De Anza.',
+    text: '11x won hackathons across 26 hackathons (incl. YC Agent Hack, TreeHacks, HackMIT, MIT Energy Hack, etc.). Hosted 4 (incl. [DAHacks], [DAHacks 3.0]); ~5100 commits on [Github]. my circuit designs on [OSHWLab], got into [Google I/O] 2024 & 2025. Participated in [FIRST Global 2019]. and [blogs] or [medium] for more',
     links: [
       {
-        text: 'Medium',
+        text: 'medium',
         url: 'https://enkhy.medium.com/',
         external: true
       },
@@ -80,6 +80,11 @@ export const siteConfig: SiteConfig = {
         text: 'FIRST Global 2019',
         url: 'https://first.global/2019-nations/mongolia-2019/',
         external: true
+      },
+      {
+        text: 'blogs',
+        url: '/blog',
+        external: false
       }
 
     ]
@@ -93,8 +98,8 @@ export const siteConfig: SiteConfig = {
   },
   contactDisplay: [
     {
-      label: 'X',
-      value: 'X',
+      label: 'Twitter',
+      value: 'Twitter',
       url: 'https://x.com/1nkfy',
       type: 'social',
       external: true

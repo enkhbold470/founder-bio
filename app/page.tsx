@@ -32,23 +32,14 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="min-h-screen overflow-hidden flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 ">
-      <main className="flex flex-col items-center justify-center max-w-[400px]">
+      <main className="flex flex-col items-center justify-center max-w-[400px] gap-4">
         {/* Intro Section */}
-        <header className="text-center mb-4 sm:mb-6">
-          <h1 className="name">{siteConfig.name}</h1>
-          <p className="text-left p-2 sm:p-3 text-spacing-4">
-            {renderBioWithLinks(siteConfig.bio.text, siteConfig.bio.links)}
-          </p>
-        </header>
-
-        {/* Contact Section */}
-        <section className="text-center mb-4 sm:mb-6 w-full">
-          <h2 className="title">Lets Connect!</h2>
-           <div className="flex justify-between px-4">
+        <header className="flex flex-col gap-4">
+          <h1 className="name">Hi, I'm {siteConfig.name}</h1>
+          <div className="flex gap-6">
             {siteConfig.contactDisplay.map((contactItem, index) => (
               <p
                 key={`${contactItem.type}-${index}`}
-                className="text-left p-2 sm:p-3"
               >
                 <Link
                   href={contactItem.url}
@@ -61,45 +52,46 @@ export default function Home() {
               </p>
             ))}
           </div>
-        </section>
+          <p className="text-left text-spacing-4">
+            {renderBioWithLinks(siteConfig.bio.text, siteConfig.bio.links)}
+          </p>
+        </header>
 
+      
 
-        <section className="text-center w-full mb-4 sm:mb-6">
+        <section className="text-center w-full">
           <h2 className="title">Updates</h2>
-
-          <ul>
+          <ul className="list-disc list-inside space-y-2 text-left mx-2 my-2">
             {recentUpdates.map((update) => (
-              <li key={update.date} className="text-left">
-                <span className="font-bold">{update.date}</span>{": "}
+              <li key={update.date} className="pl-1">
+                <span className="font-semibold">{update.date}</span>
+                {": "}
                 <Link
                   href={update.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-blue-600 transition-colors"
+                  className="transition-colors hover:text-blue-600 underline"
                 >
                   {update.title}
                 </Link>
               </li>
             ))}
-             <li className="text-left block mt-2 italic">
-            and more on {" "}
-            <Link
-              href="/blog"
-              className="hover:text-blue-600 transition-colors underline font-bold"
-            >
-              my blog
-            </Link>
-          </li>
+            <li className="block mt-3 italic pl-1">
+              and more on{" "}
+              <Link
+                href="/blog"
+                className="hover:text-blue-600 underline font-bold transition-colors"
+              >
+                my blog
+              </Link>
+            </li>
           </ul>
          
         </section>
       </main>
 
       {/* Footer Section */}
-      <footer className="text-center p-4 sm:p-6 border-t-2 border-black">
-        <p className="text-left ">© 2025 {siteConfig.name}</p>
-
-     
+      <footer className="text-center p-4 sm:p-6  bottom-0">
 
         <p className="text-left">
           <Link

@@ -8,14 +8,14 @@ body {
 }
 
 .name {
-  font-size: clamp(28pt, 8vw, 36pt);
+  font-size: clamp(20pt, 6vw, 24pt);
   text-align: left;
   line-height: 1.2;
   font-weight: 800;
 }
 
 .title {
-  font-size: clamp(18pt, 5vw, 20pt);
+  font-size: clamp(18pt, 5vw, 18pt);
   text-align: left;
   margin-bottom: 0.5rem;
   line-height: 1.3;
@@ -72,8 +72,8 @@ ul {
   hyphens: auto;
   list-style-type:disc;
   list-style-position: inside;
-  margin-left: 1rem;
-  padding-left: 1rem;
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
   margin-bottom: 0.5rem;
   list-style-type:disc;
 }
