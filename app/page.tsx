@@ -35,7 +35,7 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center max-w-[400px] gap-4">
         {/* Intro Section */}
         <header className="flex flex-col gap-4">
-          <h1 className="name">Hi, I'm {siteConfig.name}</h1>
+          <h1 className="name">Hi, I&apos;m {siteConfig.name}</h1>
           <div className="flex gap-6">
             {siteConfig.contactDisplay.map((contactItem, index) => (
               <p
