@@ -45,7 +45,7 @@ async function getFeed(): Promise<MediumFeedItem[]> {
   const xml = await response.text();
   const feed = await parser.parseString(xml);
   return (
-    feed.items?.slice(0, 10).map((item: MediumFeedItem) => {
+    feed.items?.map((item: MediumFeedItem) => {
       const contentEncoded = item.contentEncoded as string || "";
       const image =
         extractImageFromContent(contentEncoded) || "https://placekeanu.com/500/300";
@@ -109,9 +109,11 @@ export default async function Blog() {
                   >
                     {item.title || ""}
                   </Link>
-                  <p className="text-left p-2 sm:p-3 mt-1">{item.contentSnippet || ""}</p>
+                  <p className="text-left p-2 sm:p-3 mt-1">{item.contentSnippet?.slice(0, 72 ) + "..." || ""}</p>
                   {item.pubDate && (
-                    <p className="text-left p-2 sm:p-3 text-sm opacity-70">{item.pubDate || ""}</p>
+                    <p className="text-left p-2 sm:p-3 text-sm opacity-70">
+                      {item.pubDate ? new Date(item.pubDate).toLocaleDateString() : ""}
+                    </p>
                   )}
                 </div>
               </li>
