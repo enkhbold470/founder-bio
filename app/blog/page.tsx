@@ -98,7 +98,7 @@ export default async function Blog() {
                     alt={item.title || ""}
                     width={200}
                     height={200}
-                    className="rounded object-cover flex-shrink-0 mt-1"
+                    className="rounded object-cover flex-shrink-0 mt-1 w-[200px] h-[200px]"
                     unoptimized
                   />
                 </Link>

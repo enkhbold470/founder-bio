@@ -76,15 +76,6 @@ export default function Home() {
                 </Link>
               </li>
             ))}
-            <li className="block mt-3 italic pl-1">
-              and more on{" "}
-              <Link
-                href="/blog"
-                className="hover:text-blue-600 underline font-bold transition-colors"
-              >
-                my blog
-              </Link>
-            </li>
           </ul>
          
         </section>
@@ -95,11 +86,9 @@ export default function Home() {
 
         <p className="text-left">
           <Link
-            href="https://chat.enk.icu"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/blog"
           >
-            Old Web
+            Blog
           </Link>
         </p>
       </footer>
