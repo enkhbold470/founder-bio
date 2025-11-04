@@ -95,11 +95,9 @@ export default function Home() {
 
         <p className="text-left">
           <Link
-            href="https://chat.enk.icu"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/blog"
           >
-            Old Web
+            Blog
           </Link>
         </p>
       </footer>
