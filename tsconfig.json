@@ -15,7 +15,7 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "perserve",
+    "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {
