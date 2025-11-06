@@ -2,9 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-text: #000000;
+  --color-link: #000000;
+  --color-link-hover: #0000ff;
+  --color-highlight: #00ffff;
+  --color-background: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text: #e0e0e0;
+    --color-link: #e0e0e0;
+    --color-link-hover: #5c9cff;
+    --color-highlight: #006666;
+    --color-background: #0a0a0a;
+  }
+}
+
 body {
   font-size: clamp(14pt, 4vw, 16pt);
   overflow-x: hidden;
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
 .name {
@@ -50,17 +70,17 @@ p {
 
 /* Remove all link styling and hover effects to maintain minimalist design */
 a {
-  color: #000000;
+  color: var(--color-link);
   text-decoration: underline;
 }
 
 a:hover {
-  color: #0000ff;
+  color: var(--color-link-hover);
   text-decoration: underline;
 }
 
 span {
-  background-color: #00ffff;
+  background-color: var(--color-highlight);
 }
 
 ul {

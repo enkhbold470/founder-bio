@@ -68,8 +68,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        <meta name="theme-color" content="#ffffff" />
-        <meta name="color-scheme" content="light" />
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+        <meta name="color-scheme" content="light dark" />
         <link rel="canonical" href={siteConfig.url} />
        {/* <script async src="htmx.js"></script>
  <script async src="https://unpkg.com/amazon@1.0.0"></script>
