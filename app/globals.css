@@ -5,6 +5,14 @@
 body {
   font-size: clamp(14pt, 4vw, 16pt);
   overflow-x: hidden;
+  background-color: #efe6e6;
+  color: #202124;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background-color: #202124;
+  color: #efe6e6;
 }
 
 .name {
@@ -50,17 +58,31 @@ p {
 
 /* Remove all link styling and hover effects to maintain minimalist design */
 a {
-  color: #000000;
+  color: #1a1a1a;
   text-decoration: underline;
+  transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #0000ff;
+  color: #2563eb;
   text-decoration: underline;
+}
+
+.dark a {
+  color: #e5e5e5;
+}
+
+.dark a:hover {
+  color: #60a5fa;
 }
 
 span {
   background-color: #00ffff;
+  transition: background-color 0.3s ease;
+}
+
+.dark span {
+  background-color: #696969;
 }
 
 ul {
@@ -76,6 +98,11 @@ ul {
   padding-left: 0.5rem;
   margin-bottom: 0.5rem;
   list-style-type:disc;
+}
+
+/* Dark mode transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 

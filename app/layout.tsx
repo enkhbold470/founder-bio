@@ -3,6 +3,8 @@ import { Noto_Serif } from "next/font/google";
 import { Analytics } from '@vercel/analytics/next';
 import { siteConfig } from "@/config/siteConfig";
 import { StructuredData } from "@/components/StructuredData";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 
 const selectedFont = Noto_Serif({
@@ -68,8 +70,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        <meta name="theme-color" content="#ffffff" />
-        <meta name="color-scheme" content="light" />
+        <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)" />
         <link rel="canonical" href={siteConfig.url} />
        {/* <script async src="htmx.js"></script>
  <script async src="https://unpkg.com/amazon@1.0.0"></script>
@@ -92,9 +94,12 @@ export default function RootLayout({
 
       </head>
       <body className={`${selectedFont.className} antialiased`}>
-        <StructuredData type="ProfilePage" />
-        {children}
-        <Analytics />
+        <ThemeProvider>
+          <ThemeToggle />
+          <StructuredData type="ProfilePage" />
+          {children}
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );
