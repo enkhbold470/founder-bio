@@ -1,69 +1,21 @@
-import rssParser from 'rss-parser';
 import Link from 'next/link';
 import Image from 'next/image';
+import { fetchMediumFeed } from '@/utils/mediumFeed';
 
-
-interface MediumFeedItem {
-  creator?: string;
-  title?: string;
-  link?: string;
-  pubDate?: string;
-  'content:encoded'?: string;
-  contentEncoded?: string; // alias for content:encoded
-  'content:encodedSnippet'?: string;
-  contentSnippet?: string;
-  'dc:creator'?: string;
-  categories?: string[];
-  guid?: string;
-  isoDate?: string;
-  image?: string;
-}
 export const dynamic = 'force-dynamic';
 export const revalidate = 60; // Revalidate every 60 seconds
 
-function extractImageFromContent(content: string): string | undefined {
-  const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
-  return imgMatch ? imgMatch[1] : undefined;
-}
+const PLACEHOLDER_IMAGE = 'https://placekeanu.com/500/300';
+const SNIPPET_LENGTH = 72;
 
-function extractTextFromContent(content: string, maxLength: number = 200): string {
-  const text = content.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+function truncate(text: string, maxLength: number): string {
+  if (!text) return '';
   if (text.length <= maxLength) return text;
-  return text.substring(0, maxLength) + "...";
-}
-
-async function getFeed(): Promise<MediumFeedItem[]> {
-  const parser = new rssParser({
-    customFields: {
-      item: [['content:encoded', 'contentEncoded']],
-    },
-  });
-  const feedUrl = "https://enkhy.medium.com/feed";
-  
-  // Fetch with no-store cache to ensure fresh data
-  const response = await fetch(feedUrl, { cache: 'no-store' });
-  const xml = await response.text();
-  const feed = await parser.parseString(xml);
-  return (
-    feed.items?.map((item: MediumFeedItem) => {
-      const contentEncoded = item.contentEncoded as string || "";
-      const image =
-        extractImageFromContent(contentEncoded) || "https://placekeanu.com/500/300";
-      const summary = item.contentSnippet || extractTextFromContent(contentEncoded, 100);
-
-      return {
-        title: item.title ?? "",
-        link: item.link ?? "#",
-        contentSnippet: summary,
-        pubDate: item.pubDate ?? "",
-        image,
-      };
-    }) || []
-  );
+  return `${text.slice(0, maxLength)}...`;
 }
 
 export default async function Blog() {
-  const feed = await getFeed();
+  const feed = await fetchMediumFeed();
   return (
     <div className="min-h-screen overflow-hidden flex flex-col justify-center items-center p-4 sm:p-6 md:p-8">
       <main className="flex flex-col items-center justify-center max-w-[600px] w-full">
@@ -86,40 +38,49 @@ export default async function Blog() {
         </header>
 
         <section className="text-center w-full">
-          <ul>
-            {feed.map((item: MediumFeedItem) => (
-              <li key={item.link} className="text-left mb-4 flex items-start gap-2">
-                {/* Very small picture */}
-                <Link
-                    href={`/blog/${item.link?.split('/').pop()}`}
-                    className="hover:text-blue-600 transition-colors font-semibold"
-                  >
-                  <Image
-                    src={item.image || "https://placekeanu.com/500/300"}
-                    alt={item.title || ""}
-                    width={200}
-                    height={200}
-                    className="rounded object-cover flex-shrink-0 mt-1 w-[200px] h-[200px]"
-                    unoptimized
-                  />
-                </Link>
-                <div className="flex-1">
-                  <Link
-                    href={`/blog/${item.link?.split('/').pop()}`}
-                    className="hover:text-blue-600 transition-colors font-semibold"
-                  >
-                    {item.title || ""}
-                  </Link>
-                  <p className="text-left p-2 sm:p-3 mt-1">{item.contentSnippet?.slice(0, 72 ) + "..." || ""}</p>
-                  {item.pubDate && (
-                    <p className="text-left p-2 sm:p-3 text-sm opacity-70">
-                      {item.pubDate ? new Date(item.pubDate).toLocaleDateString() : ""}
-                    </p>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
+          {feed.length === 0 ? (
+            <p className="text-left p-2 sm:p-3 text-sm opacity-70">
+              Unable to load Medium posts right now. Please try again later.
+            </p>
+          ) : (
+            <ul>
+              {feed.map((item) => {
+                const slug = item.link.split('/').filter(Boolean).pop() ?? '';
+                const snippet = truncate(item.contentSnippet, SNIPPET_LENGTH);
+                return (
+                  <li key={item.link} className="text-left mb-4 flex items-start gap-2">
+                    <Link
+                      href={`/blog/${slug}`}
+                      className="hover:text-blue-600 transition-colors font-semibold"
+                    >
+                      <Image
+                        src={item.image || PLACEHOLDER_IMAGE}
+                        alt={item.title || ""}
+                        width={200}
+                        height={200}
+                        className="rounded object-cover flex-shrink-0 mt-1 w-[200px] h-[200px]"
+                        unoptimized
+                      />
+                    </Link>
+                    <div className="flex-1">
+                      <Link
+                        href={`/blog/${slug}`}
+                        className="hover:text-blue-600 transition-colors font-semibold"
+                      >
+                        {item.title || ""}
+                      </Link>
+                      <p className="text-left p-2 sm:p-3 mt-1">{snippet}</p>
+                      {item.pubDate && (
+                        <p className="text-left p-2 sm:p-3 text-sm opacity-70">
+                          {new Date(item.pubDate).toLocaleDateString()}
+                        </p>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </section>
       </main>
 

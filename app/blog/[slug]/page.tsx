@@ -1,56 +1,8 @@
-import rssParser from 'rss-parser';
-
 import Link from 'next/link';
+import { fetchMediumFeed, type MediumFeedEntry } from '@/utils/mediumFeed';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 60; // Revalidate every 60 seconds
-
-/**
- * Interface for Medium RSS Items
- */
-interface MediumFeedItem {
-  creator?: string;
-  title?: string;
-  link?: string;
-  pubDate?: string;
-  'content:encoded'?: string;
-  contentEncoded?: string; // alias for content:encoded
-  'content:encodedSnippet'?: string;
-  contentSnippet?: string;
-  'dc:creator'?: string;
-  categories?: string[];
-  guid?: string;
-  isoDate?: string;
-}
-
-/**
- * Extracted and enriched FeedItem shape for local use
- */
-type FeedItem = {
-  title: string;
-  link: string;
-  contentEncoded?: string;
-  contentSnippet?: string;
-  pubDate?: string;
-  image?: string;
-};
-
-/**
- * Extracts the first <img src="..."> from the given HTML content
- */
-function extractImageFromContent(content: string): string | undefined {
-  const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
-  return imgMatch ? imgMatch[1] : undefined;
-}
-
-/**
- * Returns plain text, with a max character length
- */
-function extractTextFromContent(content: string, maxLength: number = 200): string {
-  const text = content.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
-  if (text.length <= maxLength) return text;
-  return text.substring(0, maxLength) + "...";
-}
 
 /**
  * For a normal YouTube URL or embed, extract the video ID.
@@ -134,52 +86,22 @@ function replaceYoutubeLinksWithEmbed(htmlContent: string): string {
   return output;
 }
 
-async function getFeed(): Promise<FeedItem[]> {
-  const parser: rssParser<unknown, MediumFeedItem> = new rssParser({
-    customFields: {
-      item: [['content:encoded', 'contentEncoded']],
-    },
-  });
-  const feedUrl = "https://enkhy.medium.com/feed";
-  
-  // Fetch with no-store cache to ensure fresh data
-  const response = await fetch(feedUrl, { cache: 'no-store' });
-  const xml = await response.text();
-  const feed = await parser.parseString(xml);
-
-  // log the feed.items value for inspection (DEV: can comment/remove in production)
-  // console.log(feed.items);
-
-  return (
-    feed.items?.map((item: MediumFeedItem) => {
-      // Prefer contentEncoded, fallback to content:encoded
-      const contentEncoded = item.contentEncoded as string || item['content:encoded'] || "";
-      const image = extractImageFromContent(contentEncoded);
-      return {
-        title: item.title ?? "",
-        link: item.link ?? "#",
-        contentEncoded,
-        contentSnippet: item.contentSnippet || item['content:encodedSnippet'] || extractTextFromContent(contentEncoded, 200),
-        pubDate: item.pubDate ?? item.isoDate ?? "",
-        image,
-      };
-    }) || []
-  );
-}
-
 type BlogPostParams = { slug: string };
 
 export default async function BlogPostPage({ params }: { params: BlogPostParams }) {
   const { slug } = await params;
 
-  const feed = await getFeed();
+  const feed: MediumFeedEntry[] = await fetchMediumFeed();
   const post = feed.find(item => {
+    if (!item.link || item.link.startsWith('#')) {
+      return false;
+    }
     try {
       const urlObj = new URL(item.link);
       const parts = urlObj.pathname.split("/");
       const last = parts.filter(Boolean).pop() || "";
       return last === slug;
-    } catch (e) {
+    } catch {
       return false;
     }
   });
