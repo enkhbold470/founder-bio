@@ -34,7 +34,7 @@ export default async function Blog() {
 
         <header className="text-center mb-4 sm:mb-6 w-full">
           <h1 className="name">Blog</h1>
-          Read it on <Link href="https://medium.com/@enkhy?utm_source=enk.icu" target="_blank" rel="noopener noreferrer">Medium</Link>
+          {/* Read it on <Link href="https://medium.com/@enkhy?utm_source=enk.icu" target="_blank" rel="noopener noreferrer">Medium</Link> */}
         </header>
 
         <section className="text-center w-full">
