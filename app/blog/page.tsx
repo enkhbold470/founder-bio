@@ -85,14 +85,22 @@ export default async function Blog() {
       </main>
 
       <footer className="text-center p-4 sm:p-6 border-t-2 border-black mt-8 w-full max-w-[600px]">
-        <p className="text-left">
+        <div className="flex flex-col gap-3 w-full items-center text-center">
+          <Link
+            href="https://medium.com/@enkhy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded border border-black px-6 py-3 text-base font-semibold hover:bg-black hover:text-white transition-colors"
+          >
+            Read more on Medium →
+          </Link>
           <Link
             href="/"
             className="hover:text-blue-600 transition-colors"
           >
             ← Back to Home
           </Link>
-        </p>
+        </div>
       </footer>
     </div>
   );
